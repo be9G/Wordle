@@ -1,0 +1,167 @@
+package com.company;
+import java.util.Scanner;
+/*
+"!" = correct letter and place
+"?" = wrong place but correct letter
+"_" = incorrect
+*/
+public class Wordle {
+    public static void main(String[] args) {
+        String guess = "";
+        Scanner input = new Scanner(System.in);
+        String[] wordleList = {
+                "Debug",
+                "Ascii",
+                "Crash",
+                "Write",
+                "Break",
+                "Cable",
+                "Eagle",
+                "Fable",
+                "Habit",
+                "Label",
+                "Table",
+                "About",
+                "Actor",
+                "Agree",
+                "Alone",
+                "Crown",
+                "Crash",
+                "Crime",
+                "Doing",
+                "Crowd",
+                "Eight",
+                "Eager",
+                "Earth",
+                "Equal",
+                "Error",
+                "Green",
+                "Horse",
+                "House",
+                "Japan",
+                "Label",
+                "Laser",
+                "Lying",
+                "Movie",
+                "Mouth",
+                "Eight",
+                "Shape",
+                "Sixth",
+                "Sight",
+                "Sharp",
+                "Sport",
+                "Stage",
+                "Stand",
+                "Steel",
+                "Stone",
+                "There",
+                "Their",
+                "Crane",
+                "Thing",
+                "Waste",
+                "Water",
+                "Whole",
+                "World",
+                "Young",
+                "Worry",
+                "Women",
+                "Watch",
+                "Voice",
+                "Above",
+                "Lunch",
+                "Clown",
+                "Cloth",
+                "Towel",
+                "Scowl",
+                "Sharp",
+                "Shine",
+                "Stand",
+                "Space",
+                "Stone",
+                "Elect",
+                "Every",
+                "Extra",
+                "Entry",
+                "Elite",
+                "Eight",
+                "Their",
+                "Maybe",
+                "Abide",
+                "Paint",
+                "Radio",
+                "Radar",
+                "Range",
+                "Annoy",
+                "Angry",
+                "Haiku",
+                "Abode",
+                "Adopt",
+                "Apple",
+                "Award",
+                "Blood",
+                "Chest",
+                "Court",
+                "Cover",
+                "Cream",
+                "Cycle",
+                "Depth",
+                "Death",
+                "Doubt",
+                "Draft",
+                "Drama",
+                "Enemy",
+                "Field",
+        };
+        String wordleWord = wordleList[(int)(Math.random() * wordleList.length)];
+        wordleWord = wordleWord.toUpperCase();
+        int guessesLeft = 6;
+        System.out.println("You have 6 attempts to guess the correct 5 letter word. \"!\" = correct letter and place." + " \"?\" = correct letter and wrong place" + " \"_\" = word does not contain this letter");
+        while (!guess.equals(wordleWord) && guessesLeft > 0) {
+            guess = input.nextLine();
+            guess = guess.toUpperCase();
+            guessesLeft--;
+            for (int i = 0; i < guess.length(); i++) {
+                System.out.print(guess.charAt(i) + " ");
+            }
+            System.out.println(" ");
+            if (guess.length() < wordleWord.length()) {
+                System.out.println(" ");
+                System.out.println("Not enough letters");
+                continue;
+            }
+            if (guess.length() > wordleWord.length()) {
+                System.out.println(" ");
+                System.out.println("Too many letters");
+                continue;
+            }
+            for (int i = 0; i < wordleWord.length(); i++) {
+                boolean correctGuess = false;
+                if (guess.charAt(i) == wordleWord.charAt(i)) {
+                    System.out.print("! ");
+                    correctGuess = true;
+                }
+                else {
+                    for (int j = 0; j < wordleWord.length(); j++) {
+                        if (guess.charAt(i) == wordleWord.charAt(j)) {
+                            System.out.print("? ");
+                            break;
+                        }
+                        else {
+                            System.out.print("_ ");
+                            break;
+                        }
+                    }
+                }
+            }
+            System.out.println("");
+        }
+        if (guess.equals(wordleWord)) {
+            System.out.println(" ");
+            System.out.println("Well Done");
+        }
+        else if (guessesLeft == 0){
+            System.out.println(" ");
+            System.out.println("You ran out of guesses, try again");
+        }
+    }
+}
